@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="desciption"
+        content="Predict whether you would have survived on the Titanic ship. It uses a machine learning model trained on the Kaggle Titanic Dataset using the Decision Tree Classifier.">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Would You Have Survived?</title>
+</head>
+
+<body style="background-color:gainsboro;" class="mt-20">
+    <h2 class="text-center text-white jumbotron bg-dark">Survival Prediction
+         Using Machine Learning<br>
+         <span style="color:rgb(255, 109, 109)">♥♥♥♥♥♥♥♥♥♥♥</span></h2>
+    <hr>
+    <img src="https://pngimg.com/uploads/titanic/titanic_PNG11.png">
+
+    <div class="jumbotron bg-dark text-white">
+        <a href="https://github.com/techshivang/Titanic_survival_prediction" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;"
+            src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"
+            height="140px" width="140px"></a>
+
+        
+            <h4>Would you have Survived?</h4>
+            <p class="text-grey-darker">
+                Please fill the form to check whether you would have survived in the Titanic ship or Not?
+            </p>
+
+            <p class="text-grey-darker">
+                It uses a machine learning model trained on the Kaggle Titanic
+                Dataset using the Decision Tree Classifier which gained an accuracy of 87.94%
+            </p>
+        
+        <div class="mt-4" id="form">
+            <form>
+                <div class="flex flex-1 border-b border-b-2 border-blue-dark max-w-sm mb-2">
+                    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        type="text" id="name" placeholder="Name">
+                </div>
+
+                <div class="flex flex-1 border-b border-b-2 border-blue-dark max-w-sm mb-2">
+                    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        type="text" id="age" placeholder="Age" maxlength="3">
+                </div>
+                <div class="flex flex-1 border-b border-b-2 border-blue-dark max-w-sm mb-2">
+                    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        type="text" id="sibsp" maxlength="2" placeholder="Number of Siblings or Spouse aboard">
+                </div>
+                <div class="flex flex-1 border-b border-b-2 border-blue-dark max-w-sm mb-2">
+                    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        type="text" id="parch" maxlength="2" placeholder="Number of Parents or Children aboard">
+                </div>
+
+                <div class="leading-normal">
+
+
+                    <div>
+                        <label class="text-grey-dark font-semibold" for="pclass">Ticket Class: </label>
+                        <div class="flex flex-col">
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="pclass" checked value="1">First Class</label>
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="pclass" value="2">Second Class</label>
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="pclass" value="3">Third Class</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-grey-dark font-semibold" for="gender">Gender: </label>
+                        <div class="flex flex-col">
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="gender" value="1" checked>Male</label>
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="gender" value="0">Female</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-grey-dark font-semibold" for="port">Port of Embarkation: </label>
+                        <div class="flex flex-col">
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="port" value="1" checked>Cherbourg</label>
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="port" value="2">Queenstown</label>
+                            <label class="text-sm text-grey-dark"><input class="mr-2" type="radio" name="port" value="3">Southampton</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="mt-4">
+                <button id="predict" class="border-2 text-white bg-blue-500 font-semibold border-blue-dark px-2 py-1 rounded">Predict!</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <p class="footer text-center pt-4">Made with <span style="color:rgb(255, 109, 109)">♥</span> by <a href="https://github.com/techshivang/Titanic_survival_prediction"
+        target="_blank">Shivang Saxena (@techyshivang)</a></p>
+
+
+
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script>
+            function make_form(){
+                let entry={};
+                entry['pclass'] = $('input[name=pclass]:checked').val();
+                entry['age'] = $("#age").val();
+                entry['sibsp'] = $("#sibsp").val();
+                entry['parch'] = $("#parch").val();
+                entry['sex'] = $('input[name=gender]:checked').val();
+                entry['port'] = $('input[name=port]:checked').val();
+
+                return entry;
+            }
+
+
+            $(function () {
+            $('button').click(function () {
+                let name = $('#name').val();
+                name = name.split(" ")[0].toUpperCase();
+                let entry = make_form();
+                console.log(entry)
+                $("#predict").text("Predicting...");
+                $.ajax({
+                    type: "POST",
+                    url: '/predict',
+                    data: JSON.stringify(entry),
+                    cache: 'no-cache',
+                    credentials: "include",
+                    headers: new Headers({
+                        'content-type': 'application/json'
+                    }),
+                    success: function (data) {
+                        if (data["survived"] == '1') {
+                            setTimeout(function(){
+                                swal("Survival", `Congratulations ${name}! Survivial is yours.`, "success");
+                    $("#predict").text("Predict");
+                            },30000)
+                    
+                }
+                else {
+                    setTimeout(function(){
+                        swal("Sinking Ship", `Sorry ${name}! You would not have survived the Titanic Crash. :(`, "warning");
+                    $("#predict").text("Predict");
+                    },3000)
+                }
+
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+
+        </script>
+
+</body>
+
+</html>
